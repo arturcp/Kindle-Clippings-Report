@@ -17,16 +17,12 @@ class Note
       author_line = lines.shift
       date_line = lines.shift
 
-      match = purge(author_line).match(AUTHOR_REGEX)
+      match = author_line.match(AUTHOR_REGEX)
       @author = match.captures.first if match
 
       # @date = Date.parse(date_line.split(',').last)
       @title = author_line.gsub(" (#{@author.to_s})", '')
       @content = lines.join(LINE_BREAK)
     end
-  end
-
-  def purge(line)
-    line.gsub('(epub)', '')
   end
 end

@@ -3,6 +3,7 @@ require 'byebug'
 require 'date'
 
 require_relative 'lib/note'
+require_relative 'lib/report'
 
 CLIPPING_TOKEN = '=========='
 
@@ -36,14 +37,10 @@ end
 
 def import
   data = File.read(params[:path])
+  report = Report.new
   clippings = data.split(CLIPPING_TOKEN)
-
-  clippings.each do |clipping|
-    note = Note.new(clipping)
-
-    puts note.author
-    puts note.title
-  end
+  clippings.each { |clipping| report.add_note(Note.new(clipping)) }
+  report.generate
 end
 
 def create_file(author, title, period, content)
