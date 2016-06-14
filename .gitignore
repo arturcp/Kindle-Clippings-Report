@@ -1,0 +1,8 @@
+/reports
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp
+.env
+.DS_Store
