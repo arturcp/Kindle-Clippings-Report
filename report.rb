@@ -1,7 +1,10 @@
 require 'fileutils'
 require 'byebug'
+require 'date'
 
-AUTHOR_REGEX = '.*\((.*)\)$'.freeze
+require_relative 'lib/note'
+
+CLIPPING_TOKEN = '=========='
 
 def params
   @params ||= {
@@ -33,23 +36,17 @@ end
 
 def import
   data = File.read(params[:path])
-  notes = data.split('==========')
-  # lines = data.split("\r\n")
+  clippings = data.split(CLIPPING_TOKEN)
 
-  notes.each do |note|
-    lines = note.split("\r\n").reject(&:empty?)
+  clippings.each do |clipping|
+    note = Note.new(clipping)
 
-    unless lines.empty?
-      match = purge(lines[0]).match(AUTHOR_REGEX)
-      if match
-        puts "#{match.captures.first} --- #{lines[0]}"
-      end
-    end
+    puts note.author
+    puts note.title
   end
 end
 
-def purge(line)
-  line.gsub('(epub)', '')
+def create_file(author, title, period, content)
 end
 
 generate
