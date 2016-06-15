@@ -20,7 +20,7 @@ class Note
       match = author_line.match(AUTHOR_REGEX)
       @author = match.captures.first if match
 
-      # @date = Date.parse(date_line.split(',').last)
+      @date = date_line.split(',').last
       @title = author_line.gsub(" (#{@author.to_s})", '')
       @content = lines.join(LINE_BREAK)
     end

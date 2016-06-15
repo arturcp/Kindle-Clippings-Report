@@ -40,10 +40,7 @@ def import
   report = Report.new
   clippings = data.split(CLIPPING_TOKEN)
   clippings.each { |clipping| report.add_note(Note.new(clipping)) }
-  report.generate
-end
-
-def create_file(author, title, period, content)
+  report.save
 end
 
 generate
