@@ -63,6 +63,6 @@ class Report
   end
 
   def file_name(title)
-    title.downcase.strip.gsub(' ', '-')
+    title.downcase.strip.gsub(' ', '-')[0..15]
   end
 end
