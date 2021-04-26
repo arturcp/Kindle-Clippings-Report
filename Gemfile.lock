@@ -29,7 +29,7 @@ DEPENDENCIES
   rspec-its
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.6p354
 
 BUNDLED WITH
-   1.14.5
+   1.17.3
